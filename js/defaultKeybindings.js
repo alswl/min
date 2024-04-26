@@ -110,19 +110,10 @@ const defaultKeybindings = {
 
     // cmd+x should switch to tab x. Cmd+9 should switch to the last tab
 
-    for (var i = 1; i < 9; i++) {
+    for (var i = 1; i <= 9; i++) {
       (function (i) {
         keybindings.defineShortcut({ keys: 'mod+' + i }, function (e) {
-          var currentIndex = tabs.getIndex(tabs.getSelected())
-          var newTab = tabs.getAtIndex(currentIndex + i) || tabs.getAtIndex(currentIndex - i)
-          if (newTab) {
-            browserUI.switchToTab(newTab.id)
-          }
-        })
-
-        keybindings.defineShortcut({ keys: 'shift+mod+' + i }, function (e) {
-          var currentIndex = tabs.getIndex(tabs.getSelected())
-          var newTab = tabs.getAtIndex(currentIndex - i) || tabs.getAtIndex(currentIndex + i)
+          var newTab = tabs.getAtIndex(i - 1)
           if (newTab) {
             browserUI.switchToTab(newTab.id)
           }
